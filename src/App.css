@@ -325,6 +325,29 @@
   border-color: var(--accent);
 }
 
+.checkout-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.checkout-button:hover:disabled {
+  background: var(--text-h);
+  border-color: var(--text-h);
+}
+
+.checkout-empty {
+  border: 1px solid #fecdca;
+  border-radius: 8px;
+  color: #b42318;
+  background: #fef3f2;
+  padding: 24px;
+}
+
+.checkout-empty h2 {
+  color: #b42318;
+  margin-bottom: 12px;
+}
+
 .checkout-success {
   border: 1px solid #abefc6;
   border-radius: 8px;

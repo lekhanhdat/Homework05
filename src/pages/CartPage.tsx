@@ -24,12 +24,13 @@ function CartPage() {
     return (
       <section>
         <h1>Shopping Cart</h1>
-        <div className="empty-cart">
-          <h2>Your cart is empty! Add products to your cart before reviewing your order.</h2>
-          <Link className="empty-cart-link" to="/products">
-            Go to Products
-          </Link>
-        </div>
+          <div className="checkout-empty" role="alert">
+            <h2>Your cart is empty!</h2>
+            <p>Add products to cart before placing an order.</p>
+            <Link className="empty-cart-link" to="/products">
+              Go to Products
+            </Link>
+          </div>
       </section>
     )
   }

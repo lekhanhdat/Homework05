@@ -1,5 +1,6 @@
 import { type ChangeEvent, type FormEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import type { AppDispatch, RootState } from '../app/store'
 import { clearCart } from '../features/cart/cartSlice'
 import {
@@ -23,6 +24,7 @@ function CheckoutPage() {
     (total, item) => total + item.price * item.quantity,
     0,
   )
+  const isCartEmpty = cartItems.length === 0
 
   const handleFieldChange =
     (field: CheckoutField) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +33,11 @@ function CheckoutPage() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
+    if (isCartEmpty) {
+      return
+    }
+
     dispatch(submitCheckout())
 
     if (Object.values(form).every((value) => value.trim())) {
@@ -43,6 +50,15 @@ function CheckoutPage() {
       <h1>Checkout</h1>
       <div className="checkout-layout">
         <form className="checkout-form" onSubmit={handleSubmit} noValidate>
+          {isCartEmpty && submitStatus !== 'success' && (
+            <div className="checkout-empty" role="alert">
+              <h2>Your cart is empty!</h2>
+              <p>Add products to cart before placing an order.</p>
+              <Link className="empty-cart-link" to="/products">
+                Go to Products
+              </Link>
+            </div>
+          )}
           <fieldset className="checkout-section">
             <legend>Shipping Address</legend>
             <label className="form-field">
@@ -153,7 +169,11 @@ function CheckoutPage() {
             </div>
           </fieldset>
 
-          <button className="checkout-button" type="submit">
+          <button
+            className="checkout-button"
+            type="submit"
+            disabled={isCartEmpty}
+          >
             Place Order
           </button>
           {submitStatus === 'success' && (
