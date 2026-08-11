@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux'
-import type { AppDispatch } from '../app/store'
-import ProductCard from '../components/ProductCard'
-import { products } from '../data/products'
-import { addToCart } from '../features/cart/cartSlice'
+import type { AppDispatch } from '../../app/store'
+import ProductCard from '../../components/ProductCard'
+import { products } from '../../data/products'
+import { addToCart } from '../../features/cart/cartSlice'
 import './ProductListPage.css'
 
 function ProductListPage() {

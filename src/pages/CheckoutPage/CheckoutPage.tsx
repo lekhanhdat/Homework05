@@ -1,15 +1,15 @@
 import { type ChangeEvent, type FormEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import type { AppDispatch, RootState } from '../app/store'
-import OrderSummary from '../components/OrderSummary'
-import { selectCartItems, selectCartTotal } from '../features/cart/cartSelectors'
-import { clearCart } from '../features/cart/cartSlice'
+import type { AppDispatch, RootState } from '../../app/store'
+import OrderSummary from '../../components/OrderSummary'
+import { selectCartItems, selectCartTotal } from '../../features/cart/cartSelectors'
+import { clearCart } from '../../features/cart/cartSlice'
 import {
   type CheckoutField,
   submitCheckout,
   updateCheckoutField,
-} from '../features/checkout/checkoutSlice'
+} from '../../features/checkout/checkoutSlice'
 import './CheckoutPage.css'
 
 function CheckoutPage() {

@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import type { AppDispatch } from '../app/store'
-import CartItemRow from '../components/CartItemRow'
-import { selectCartItems, selectCartTotal } from '../features/cart/cartSelectors'
+import type { AppDispatch } from '../../app/store'
+import CartItemRow from '../../components/CartItemRow'
+import { selectCartItems, selectCartTotal } from '../../features/cart/cartSelectors'
 import {
   decreaseQuantity,
   increaseQuantity,
   removeFromCart,
-} from '../features/cart/cartSlice'
-import { formatCurrency } from '../utils/currency'
+} from '../../features/cart/cartSlice'
+import { formatCurrency } from '../../utils/currency'
 import './CartPage.css'
 
 function CartPage() {

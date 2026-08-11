@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import AppLayout from './components/AppLayout'
-import CartPage from './pages/CartPage'
-import CheckoutPage from './pages/CheckoutPage'
-import ProductListPage from './pages/ProductListPage'
+import CartPage from './pages/CartPage/CartPage'
+import CheckoutPage from './pages/CheckoutPage/CheckoutPage'
+import ProductListPage from './pages/ProductListPage/ProductListPage'
 import './App.css'
 
 function App() {
