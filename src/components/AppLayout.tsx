@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { Link, Outlet } from 'react-router-dom'
 import { selectCartItemCount } from '../features/cart/cartSelectors'
-import './AppLayout.css'
+import './AppLayout.scss'
 
 function AppLayout() {
   const cartItemCount = useSelector(selectCartItemCount)
