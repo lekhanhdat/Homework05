@@ -241,6 +241,74 @@
   background: var(--accent);
 }
 
+.checkout-form {
+  display: grid;
+  gap: 24px;
+  max-width: 720px;
+}
+
+.checkout-section {
+  display: grid;
+  gap: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 0;
+  padding: 24px;
+}
+
+.checkout-section legend {
+  color: var(--text-h);
+  font-size: 24px;
+  font-weight: 700;
+  padding: 0 8px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.form-field {
+  display: grid;
+  gap: 8px;
+  color: var(--text-h);
+  font-weight: 700;
+}
+
+.form-field input {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: var(--text-h);
+  background: var(--bg);
+  font: inherit;
+  padding: 10px 12px;
+  width: 100%;
+}
+
+.form-field input:focus {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent-bg);
+}
+
+.checkout-button {
+  justify-self: start;
+  color: var(--bg);
+  background: var(--text-h);
+  border: 1px solid var(--text-h);
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 10px 14px;
+}
+
+.checkout-button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
 @media (max-width: 720px) {
   .app-header {
     align-items: flex-start;
@@ -263,5 +331,9 @@
   .cart-item {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
   }
 }
