@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { AppDispatch, RootState } from '../app/store'
 import {
   type CheckoutField,
+  submitCheckout,
   updateCheckoutField,
-  validateCheckoutForm,
 } from '../features/checkout/checkoutSlice'
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
@@ -14,7 +14,9 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 
 function CheckoutPage() {
   const dispatch = useDispatch<AppDispatch>()
-  const { errors, form } = useSelector((state: RootState) => state.checkout)
+  const { errors, form, submitStatus } = useSelector(
+    (state: RootState) => state.checkout,
+  )
   const cartItems = useSelector((state: RootState) => state.cart.items)
   const cartTotal = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -28,7 +30,7 @@ function CheckoutPage() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    dispatch(validateCheckoutForm())
+    dispatch(submitCheckout())
   }
 
   return (
@@ -149,6 +151,11 @@ function CheckoutPage() {
           <button className="checkout-button" type="submit">
             Place Order
           </button>
+          {submitStatus === 'success' && (
+            <p className="checkout-success" role="status">
+              Purchase completed successfully.
+            </p>
+          )}
         </form>
 
         <aside className="order-summary" aria-labelledby="order-summary-title">
