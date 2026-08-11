@@ -1,18 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import AppLayout from './components/AppLayout'
+import CartPage from './pages/CartPage'
+import CheckoutPage from './pages/CheckoutPage'
+import ProductListPage from './pages/ProductListPage'
 import './App.css'
-
-function ProductListPage() {
-  return <h1>Products</h1>
-}
-
-function CartPage() {
-  return <h1>Shopping Cart</h1>
-}
-
-function CheckoutPage() {
-  return <h1>Checkout</h1>
-}
 
 function App() {
   return (
