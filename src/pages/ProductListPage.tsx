@@ -1,4 +1,7 @@
+import { useDispatch } from 'react-redux'
+import type { AppDispatch } from '../app/store'
 import { products } from '../data/products'
+import { addToCart } from '../features/cart/cartSlice'
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -6,6 +9,8 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 })
 
 function ProductListPage() {
+  const dispatch = useDispatch<AppDispatch>()
+
   return (
     <section>
       <h1>Products</h1>
@@ -16,7 +21,14 @@ function ProductListPage() {
             <p className="product-price">
               {currencyFormatter.format(product.price)}
             </p>
-            <p>{product.description}</p>
+            <p className="product-description">{product.description}</p>
+            <button
+              className="product-action"
+              type="button"
+              onClick={() => dispatch(addToCart(product))}
+            >
+              Add to Cart
+            </button>
           </li>
         ))}
       </ul>
