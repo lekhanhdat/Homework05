@@ -3,7 +3,7 @@ import type { AppDispatch } from '../../app/store'
 import ProductCard from '../../components/ProductCard'
 import { products } from '../../data/products'
 import { addToCart } from '../../features/cart/cartSlice'
-import './ProductListPage.css'
+import './ProductListPage.scss'
 
 function ProductListPage() {
   const dispatch = useDispatch<AppDispatch>()

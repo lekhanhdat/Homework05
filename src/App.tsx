@@ -3,7 +3,6 @@ import AppLayout from './components/AppLayout'
 import CartPage from './pages/CartPage/CartPage'
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage'
 import ProductListPage from './pages/ProductListPage/ProductListPage'
-import './App.css'
 
 function App() {
   return (
