@@ -292,6 +292,16 @@
   outline: 2px solid var(--accent-bg);
 }
 
+.form-field input[aria-invalid='true'] {
+  border-color: #d92d20;
+}
+
+.form-error {
+  color: #b42318;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .checkout-button {
   justify-self: start;
   color: var(--bg);
