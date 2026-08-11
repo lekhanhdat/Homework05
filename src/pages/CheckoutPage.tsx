@@ -1,6 +1,7 @@
 import { type ChangeEvent, type FormEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import type { AppDispatch, RootState } from '../app/store'
+import { clearCart } from '../features/cart/cartSlice'
 import {
   type CheckoutField,
   submitCheckout,
@@ -31,6 +32,10 @@ function CheckoutPage() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     dispatch(submitCheckout())
+
+    if (Object.values(form).every((value) => value.trim())) {
+      dispatch(clearCart())
+    }
   }
 
   return (
