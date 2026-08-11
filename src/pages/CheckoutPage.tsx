@@ -2,6 +2,7 @@ import { type ChangeEvent, type FormEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import type { AppDispatch, RootState } from '../app/store'
+import OrderSummary from '../components/OrderSummary'
 import { selectCartItems, selectCartTotal } from '../features/cart/cartSelectors'
 import { clearCart } from '../features/cart/cartSlice'
 import {
@@ -9,7 +10,6 @@ import {
   submitCheckout,
   updateCheckoutField,
 } from '../features/checkout/checkoutSlice'
-import { formatCurrency } from '../utils/currency'
 
 function CheckoutPage() {
   const dispatch = useDispatch<AppDispatch>()
@@ -177,30 +177,7 @@ function CheckoutPage() {
           )}
         </form>
 
-        <aside className="order-summary" aria-labelledby="order-summary-title">
-          <h2 id="order-summary-title">Order Summary</h2>
-          {cartItems.length > 0 ? (
-            <ul className="summary-list">
-              {cartItems.map((item) => (
-                <li className="summary-item" key={item.id}>
-                  <div>
-                    <span className="summary-item-name">{item.name}</span>
-                    <span className="summary-item-quantity">
-                      x{item.quantity}
-                    </span>
-                  </div>
-                  <strong>{formatCurrency(item.price * item.quantity)}</strong>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No items in cart.</p>
-          )}
-          <div className="summary-total">
-            <span>Total</span>
-            <strong>{formatCurrency(cartTotal)}</strong>
-          </div>
-        </aside>
+        <OrderSummary items={cartItems} total={cartTotal} />
       </div>
     </section>
   )
