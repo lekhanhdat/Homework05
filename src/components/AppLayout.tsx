@@ -1,11 +1,9 @@
 import { useSelector } from 'react-redux'
 import { Link, Outlet } from 'react-router-dom'
-import type { RootState } from '../app/store'
+import { selectCartItemCount } from '../features/cart/cartSelectors'
 
 function AppLayout() {
-  const cartItemCount = useSelector((state: RootState) =>
-    state.cart.items.reduce((total, item) => total + item.quantity, 0),
-  )
+  const cartItemCount = useSelector(selectCartItemCount)
 
   return (
     <div className="app-shell">

@@ -2,11 +2,7 @@ import { useDispatch } from 'react-redux'
 import type { AppDispatch } from '../app/store'
 import { products } from '../data/products'
 import { addToCart } from '../features/cart/cartSlice'
-
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-})
+import { formatCurrency } from '../utils/currency'
 
 function ProductListPage() {
   const dispatch = useDispatch<AppDispatch>()
@@ -19,7 +15,7 @@ function ProductListPage() {
           <li className="product-item" key={product.id}>
             <h2>{product.name}</h2>
             <p className="product-price">
-              {currencyFormatter.format(product.price)}
+              {formatCurrency(product.price)}
             </p>
             <p className="product-description">{product.description}</p>
             <button

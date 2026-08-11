@@ -1,24 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import type { AppDispatch, RootState } from '../app/store'
+import type { AppDispatch } from '../app/store'
+import { selectCartItems, selectCartTotal } from '../features/cart/cartSelectors'
 import {
   decreaseQuantity,
   increaseQuantity,
   removeFromCart,
 } from '../features/cart/cartSlice'
-
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-})
+import { formatCurrency } from '../utils/currency'
 
 function CartPage() {
   const dispatch = useDispatch<AppDispatch>()
-  const cartItems = useSelector((state: RootState) => state.cart.items)
-  const cartTotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0,
-  )
+  const cartItems = useSelector(selectCartItems)
+  const cartTotal = useSelector(selectCartTotal)
 
   if (cartItems.length === 0) {
     return (
@@ -44,7 +38,7 @@ function CartPage() {
             <div>
               <h2>{item.name}</h2>
               <p className="cart-item-price">
-                {currencyFormatter.format(item.price)}
+                {formatCurrency(item.price)}
               </p>
             </div>
             <div className="quantity-controls">
@@ -69,7 +63,7 @@ function CartPage() {
               </button>
             </div>
             <p className="cart-item-subtotal">
-              Subtotal: {currencyFormatter.format(item.price * item.quantity)}
+              Subtotal: {formatCurrency(item.price * item.quantity)}
             </p>
             <button
               className="remove-button"
@@ -83,7 +77,7 @@ function CartPage() {
       </ul>
       <div className="cart-summary">
         <span>Total</span>
-        <strong>{currencyFormatter.format(cartTotal)}</strong>
+        <strong>{formatCurrency(cartTotal)}</strong>
       </div>
     </section>
   )

@@ -2,28 +2,22 @@ import { type ChangeEvent, type FormEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import type { AppDispatch, RootState } from '../app/store'
+import { selectCartItems, selectCartTotal } from '../features/cart/cartSelectors'
 import { clearCart } from '../features/cart/cartSlice'
 import {
   type CheckoutField,
   submitCheckout,
   updateCheckoutField,
 } from '../features/checkout/checkoutSlice'
-
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-})
+import { formatCurrency } from '../utils/currency'
 
 function CheckoutPage() {
   const dispatch = useDispatch<AppDispatch>()
   const { errors, form, submitStatus } = useSelector(
     (state: RootState) => state.checkout,
   )
-  const cartItems = useSelector((state: RootState) => state.cart.items)
-  const cartTotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0,
-  )
+  const cartItems = useSelector(selectCartItems)
+  const cartTotal = useSelector(selectCartTotal)
   const isCartEmpty = cartItems.length === 0
 
   const handleFieldChange =
@@ -195,9 +189,7 @@ function CheckoutPage() {
                       x{item.quantity}
                     </span>
                   </div>
-                  <strong>
-                    {currencyFormatter.format(item.price * item.quantity)}
-                  </strong>
+                  <strong>{formatCurrency(item.price * item.quantity)}</strong>
                 </li>
               ))}
             </ul>
@@ -206,7 +198,7 @@ function CheckoutPage() {
           )}
           <div className="summary-total">
             <span>Total</span>
-            <strong>{currencyFormatter.format(cartTotal)}</strong>
+            <strong>{formatCurrency(cartTotal)}</strong>
           </div>
         </aside>
       </div>
