@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux'
 import type { AppDispatch } from '../app/store'
+import ProductCard from '../components/ProductCard'
 import { products } from '../data/products'
 import { addToCart } from '../features/cart/cartSlice'
-import { formatCurrency } from '../utils/currency'
 
 function ProductListPage() {
   const dispatch = useDispatch<AppDispatch>()
@@ -12,20 +12,13 @@ function ProductListPage() {
       <h1>Products</h1>
       <ul className="product-list">
         {products.map((product) => (
-          <li className="product-item" key={product.id}>
-            <h2>{product.name}</h2>
-            <p className="product-price">
-              {formatCurrency(product.price)}
-            </p>
-            <p className="product-description">{product.description}</p>
-            <button
-              className="product-action"
-              type="button"
-              onClick={() => dispatch(addToCart(product))}
-            >
-              Add to Cart
-            </button>
-          </li>
+          <ProductCard
+            key={product.id}
+            product={product}
+            onAddToCart={(selectedProduct) =>
+              dispatch(addToCart(selectedProduct))
+            }
+          />
         ))}
       </ul>
     </section>
