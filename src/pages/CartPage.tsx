@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import type { AppDispatch } from '../app/store'
+import CartItemRow from '../components/CartItemRow'
 import { selectCartItems, selectCartTotal } from '../features/cart/cartSelectors'
 import {
   decreaseQuantity,
@@ -34,45 +35,13 @@ function CartPage() {
       <h1>Shopping Cart</h1>
       <ul className="cart-list">
         {cartItems.map((item) => (
-          <li className="cart-item" key={item.id}>
-            <div>
-              <h2>{item.name}</h2>
-              <p className="cart-item-price">
-                {formatCurrency(item.price)}
-              </p>
-            </div>
-            <div className="quantity-controls">
-              <span className="cart-item-quantity">Quantity: </span>
-              <button
-                className="quantity-button"
-                type="button"
-                onClick={() => dispatch(decreaseQuantity(item.id))}
-                disabled={item.quantity === 1}
-                aria-label={`Decrease ${item.name} quantity`}
-              >
-                -
-              </button>
-              <span className="cart-item-quantity">{item.quantity}</span>
-              <button
-                className="quantity-button"
-                type="button"
-                onClick={() => dispatch(increaseQuantity(item.id))}
-                aria-label={`Increase ${item.name} quantity`}
-              >
-                +
-              </button>
-            </div>
-            <p className="cart-item-subtotal">
-              Subtotal: {formatCurrency(item.price * item.quantity)}
-            </p>
-            <button
-              className="remove-button"
-              type="button"
-              onClick={() => dispatch(removeFromCart(item.id))}
-            >
-              Remove
-            </button>
-          </li>
+          <CartItemRow
+            key={item.id}
+            item={item}
+            onDecreaseQuantity={(itemId) => dispatch(decreaseQuantity(itemId))}
+            onIncreaseQuantity={(itemId) => dispatch(increaseQuantity(itemId))}
+            onRemove={(itemId) => dispatch(removeFromCart(itemId))}
+          />
         ))}
       </ul>
       <div className="cart-summary">
