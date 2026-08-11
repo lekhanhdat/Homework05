@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+import AppLayout from './components/AppLayout'
 import './App.css'
 
 function ProductListPage() {
@@ -16,10 +17,12 @@ function CheckoutPage() {
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/products" replace />} />
-      <Route path="/products" element={<ProductListPage />} />
-      <Route path="/cart" element={<CartPage />} />
-      <Route path="/checkout" element={<CheckoutPage />} />
+      <Route element={<AppLayout />}>
+        <Route path="/" element={<Navigate to="/products" replace />} />
+        <Route path="/products" element={<ProductListPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+      </Route>
     </Routes>
   )
 }
