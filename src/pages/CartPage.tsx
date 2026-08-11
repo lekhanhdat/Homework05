@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
 import type { AppDispatch, RootState } from '../app/store'
-import { decreaseQuantity, increaseQuantity } from '../features/cart/cartSlice'
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeFromCart,
+} from '../features/cart/cartSlice'
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -47,6 +51,13 @@ function CartPage() {
             <p className="cart-item-subtotal">
               Subtotal: {currencyFormatter.format(item.price * item.quantity)}
             </p>
+            <button
+              className="remove-button"
+              type="button"
+              onClick={() => dispatch(removeFromCart(item.id))}
+            >
+              Remove
+            </button>
           </li>
         ))}
       </ul>
