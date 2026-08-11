@@ -40,9 +40,24 @@ const cartSlice = createSlice({
         quantity: 1,
       })
     },
+    increaseQuantity: (state, action: PayloadAction<number>) => {
+      const existingItem = state.items.find((item) => item.id === action.payload)
+
+      if (existingItem) {
+        existingItem.quantity += 1
+      }
+    },
+    decreaseQuantity: (state, action: PayloadAction<number>) => {
+      const existingItem = state.items.find((item) => item.id === action.payload)
+
+      if (existingItem && existingItem.quantity > 1) {
+        existingItem.quantity -= 1
+      }
+    },
   },
 })
 
-export const { addToCart } = cartSlice.actions
+export const { addToCart, decreaseQuantity, increaseQuantity } =
+  cartSlice.actions
 
 export default cartSlice.reducer

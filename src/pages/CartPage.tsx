@@ -1,5 +1,6 @@
-import { useSelector } from 'react-redux'
-import type { RootState } from '../app/store'
+import { useDispatch, useSelector } from 'react-redux'
+import type { AppDispatch, RootState } from '../app/store'
+import { decreaseQuantity, increaseQuantity } from '../features/cart/cartSlice'
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -7,6 +8,7 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 })
 
 function CartPage() {
+  const dispatch = useDispatch<AppDispatch>()
   const cartItems = useSelector((state: RootState) => state.cart.items)
 
   return (
@@ -21,7 +23,27 @@ function CartPage() {
                 {currencyFormatter.format(item.price)}
               </p>
             </div>
-            <p className="cart-item-quantity">Quantity: {item.quantity}</p>
+            <div className="quantity-controls">
+              <span className="cart-item-quantity">Quantity: </span>
+              <button
+                className="quantity-button"
+                type="button"
+                onClick={() => dispatch(decreaseQuantity(item.id))}
+                disabled={item.quantity === 1}
+                aria-label={`Decrease ${item.name} quantity`}
+              >
+                -
+              </button>
+              <span className="cart-item-quantity">{item.quantity}</span>
+              <button
+                className="quantity-button"
+                type="button"
+                onClick={() => dispatch(increaseQuantity(item.id))}
+                aria-label={`Increase ${item.name} quantity`}
+              >
+                +
+              </button>
+            </div>
             <p className="cart-item-subtotal">
               Subtotal: {currencyFormatter.format(item.price * item.quantity)}
             </p>
