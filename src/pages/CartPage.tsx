@@ -14,6 +14,10 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 function CartPage() {
   const dispatch = useDispatch<AppDispatch>()
   const cartItems = useSelector((state: RootState) => state.cart.items)
+  const cartTotal = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0,
+  )
 
   return (
     <section>
@@ -61,6 +65,10 @@ function CartPage() {
           </li>
         ))}
       </ul>
+      <div className="cart-summary">
+        <span>Total</span>
+        <strong>{currencyFormatter.format(cartTotal)}</strong>
+      </div>
     </section>
   )
 }

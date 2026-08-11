@@ -202,6 +202,19 @@
   background: #fef3f2;
 }
 
+.cart-summary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  color: var(--text-h);
+  font-size: 24px;
+  font-weight: 700;
+}
+
 @media (max-width: 720px) {
   .app-header {
     align-items: flex-start;
