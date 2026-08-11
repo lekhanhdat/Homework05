@@ -215,6 +215,32 @@
   font-weight: 700;
 }
 
+.empty-cart {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px;
+}
+
+.empty-cart h2 {
+  margin-bottom: 12px;
+}
+
+.empty-cart-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--bg);
+  background: var(--text-h);
+  border-radius: 6px;
+  font-weight: 700;
+  margin-top: 24px;
+  padding: 10px 14px;
+  text-decoration: none;
+}
+
+.empty-cart-link:hover {
+  background: var(--accent);
+}
+
 @media (max-width: 720px) {
   .app-header {
     align-items: flex-start;

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import type { AppDispatch, RootState } from '../app/store'
 import {
   decreaseQuantity,
@@ -18,6 +19,20 @@ function CartPage() {
     (total, item) => total + item.price * item.quantity,
     0,
   )
+
+  if (cartItems.length === 0) {
+    return (
+      <section>
+        <h1>Shopping Cart</h1>
+        <div className="empty-cart">
+          <h2>Your cart is empty! Add products to your cart before reviewing your order.</h2>
+          <Link className="empty-cart-link" to="/products">
+            Go to Products
+          </Link>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section>
