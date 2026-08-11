@@ -9,6 +9,7 @@ import {
   removeFromCart,
 } from '../features/cart/cartSlice'
 import { formatCurrency } from '../utils/currency'
+import './CartPage.css'
 
 function CartPage() {
   const dispatch = useDispatch<AppDispatch>()

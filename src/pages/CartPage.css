@@ -1,0 +1,125 @@
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  gap: 24px;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.cart-item h2 {
+  margin-bottom: 8px;
+}
+
+.cart-item-price,
+.cart-item-quantity,
+.cart-item-subtotal {
+  color: var(--text-h);
+  font-weight: 700;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-h);
+  background: var(--bg);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.quantity-button:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.quantity-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.remove-button {
+  color: #b42318;
+  background: transparent;
+  border: 1px solid #fecdca;
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 8px 12px;
+}
+
+.remove-button:hover {
+  background: #fef3f2;
+}
+
+.cart-summary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  color: var(--text-h);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.checkout-empty {
+  border: 1px solid #fecdca;
+  border-radius: 8px;
+  color: #b42318;
+  background: #fef3f2;
+  padding: 24px;
+}
+
+.checkout-empty h2 {
+  color: #b42318;
+  margin-bottom: 12px;
+}
+
+.empty-cart-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--bg);
+  background: var(--text-h);
+  border-radius: 6px;
+  font-weight: 700;
+  margin-top: 24px;
+  padding: 10px 14px;
+  text-decoration: none;
+}
+
+.empty-cart-link:hover {
+  background: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .cart-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

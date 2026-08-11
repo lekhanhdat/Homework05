@@ -10,6 +10,7 @@ import {
   submitCheckout,
   updateCheckoutField,
 } from '../features/checkout/checkoutSlice'
+import './CheckoutPage.css'
 
 function CheckoutPage() {
   const dispatch = useDispatch<AppDispatch>()
