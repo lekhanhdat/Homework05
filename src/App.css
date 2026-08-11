@@ -27,6 +27,9 @@
 }
 
 .nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--text);
   font-size: 16px;
   font-weight: 600;
@@ -41,6 +44,22 @@
 .nav-link:hover {
   color: var(--text-h);
   background: var(--social-bg);
+}
+
+.cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  border-radius: 999px;
+  color: var(--bg);
+  background: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0 6px;
 }
 
 .app-main {

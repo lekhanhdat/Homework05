@@ -1,6 +1,12 @@
+import { useSelector } from 'react-redux'
 import { Link, Outlet } from 'react-router-dom'
+import type { RootState } from '../app/store'
 
 function AppLayout() {
+  const cartItemCount = useSelector((state: RootState) =>
+    state.cart.items.reduce((total, item) => total + item.quantity, 0),
+  )
+
   return (
     <div className="app-shell">
       <header className="app-header">
@@ -13,6 +19,11 @@ function AppLayout() {
           </Link>
           <Link className="nav-link" to="/cart">
             Cart
+            {cartItemCount > 0 && (
+              <span className="cart-count" aria-label={`${cartItemCount} cart items`}>
+                {cartItemCount}
+              </span>
+            )}
           </Link>
           <Link className="nav-link" to="/checkout">
             Checkout
